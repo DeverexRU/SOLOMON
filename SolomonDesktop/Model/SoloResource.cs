@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SolomonDesktop.Model
 {
-    class SoloResource
+    public class SoloResource
     {
+
     }
 }

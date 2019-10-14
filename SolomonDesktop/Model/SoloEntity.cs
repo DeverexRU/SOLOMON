@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace SolomonDesktop.Model
 {
-    class SoloEntity
+    /// <summary>
+    /// Сущность. Оъект планировщика
+    /// </summary>
+    public class SoloEntity
     {
-        string Caption { get; set; }
+        public string Caption { get; set; }
 
-        List<SoloEntity> DependsOnEntities { get; set; }
+        public List<SoloLink> MasterLinks { get; set; }
+        public List<SoloLink> SlaveLinks { get; set; }
+               
 
-
-
-          
     }
 }

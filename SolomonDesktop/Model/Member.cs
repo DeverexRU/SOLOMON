@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace SolomonDesktop.Model
 {
-    class Member
+    public class Member
     {
-        string FullName { get; set; }
-        string Email { get; set; }
+        public string FullName { get; set; }
+        public string Email { get; set; }
+
     }
 }
