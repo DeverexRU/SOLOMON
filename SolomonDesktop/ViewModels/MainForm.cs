@@ -7,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SolomonDesktop.ViewModels
 {
@@ -57,10 +58,7 @@ namespace SolomonDesktop.ViewModels
 
         #region Команды
 
-        public RelayCommand CmdAddItemBlokbox { get { return new RelayCommand(_DoAddItemBlokbox, _AlwaysTrue); } }
-        public RelayCommand CmdAddItemEmkost { get { return new RelayCommand(_DoAddItemEmkost, _AlwaysTrue); } }
-        public RelayCommand CmdAddItemOpora { get { return new RelayCommand(_DoAddItemOpora, _AlwaysTrue); } }
-        public RelayCommand CmdAddItemSvay { get { return new RelayCommand(_DoAddItemSvaya, _AlwaysTrue); } }
+        public RelayCommand CmdAddItemBlokbox { get { return new RelayCommand(_DoAddItem, _AlwaysTrue); } }
         public RelayCommand CmdEditItem { get { return new RelayCommand(_DoEditItem, _ItemsCommandsEnabled); } }
         public RelayCommand CmdDeleteItem { get { return new RelayCommand(_DoDeleteItem, _ItemsCommandsEnabled); } }
 
@@ -72,7 +70,7 @@ namespace SolomonDesktop.ViewModels
 
         #region Commands - реализация
 
-        private void _DoAddItemBlokbox()
+        private void _DoAddItem()
         {
             //DLog.Ln("_DoAddItemBlokbox()");
             if (new FormDialog1().ShowDialog() == true)
@@ -82,43 +80,17 @@ namespace SolomonDesktop.ViewModels
             }
         }
 
-        private void _DoAddItemEmkost()
-        {
-            //if (new FormConstrEmkost(-1).ShowDialog() == true)
-            //{
-            //    LoadFromModel();
-            //}
-        }
-
-        private void _DoAddItemOpora()
-        {
-            //if (new FormConstrOpora(-1).ShowDialog() == true)
-            //{
-            //    LoadFromModel();
-            //}
-        }
-
-        private void _DoAddItemSvaya()
-        {
-            DLog.Ln("_DoAddItemSvaya()");
-            if (new FormCatConstrSvaya(-1).ShowDialog() == true)
-            {
-                DLog.Ln("FormCatConstrSvaya(-1).ShowDialog() == true");
-                LoadFromModel();
-            }
-        }
-
         private void _DoEditItem()
         {
-            switch (CatConstr[_SelectedIndex].VConstrElemKind)
-            {
-                case MDConstrElemKind.blokbox:
-                    if (new FormCatConstrBlokbox(SelectedIndex).ShowDialog() == true)
-                    {
-                        LoadFromModel();
-                    }
-                    break;
-            }
+            //switch (CatConstr[_SelectedIndex].VConstrElemKind)
+            //{
+            //    case MDConstrElemKind.blokbox:
+            //        if (new FormCatConstrBlokbox(SelectedIndex).ShowDialog() == true)
+            //        {
+            //            LoadFromModel();
+            //        }
+            //        break;
+            //}
         }
 
         private void _DoDeleteItem()
@@ -130,7 +102,7 @@ namespace SolomonDesktop.ViewModels
                 MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 //выполнить удаление текущей строки - получить номер и грохнуть её
-                CatConstr.RemoveAt(SelectedIndex);
+                //CatConstr.RemoveAt(SelectedIndex);
             }
         }
 
@@ -149,22 +121,22 @@ namespace SolomonDesktop.ViewModels
         /// </summary>
         public void LoadFromModel()
         {
-            //считать в таблицу только общие свойства
-            CatConstr.Clear();
-            //проход по строкам данных ИГЭ
-            foreach (var v in Ap.MC.fModelConstr.fConstrElements)
-            {
-                //создать строку параметров в VM
-                CatConstr.Add(new VM_CatConstrItem()
-                {
-                    VConstrElemKind = v.fConstrElemKind,
-                    VElemShifr = v.fElemShifr,
-                    VElemCaption = v.fElemCaption,
-                    VResponsibilityLevel = v.fResponsibilityLevel,
-                    VBeginExploitation = v.fBeginExploitation,
-                    VExploitationTerm = v.fExploitationTerm
-                });
-            }
+            ////считать в таблицу только общие свойства
+            //CatConstr.Clear();
+            ////проход по строкам данных ИГЭ
+            //foreach (var v in Ap.MC.fModelConstr.fConstrElements)
+            //{
+            //    //создать строку параметров в VM
+            //    CatConstr.Add(new VM_CatConstrItem()
+            //    {
+            //        VConstrElemKind = v.fConstrElemKind,
+            //        VElemShifr = v.fElemShifr,
+            //        VElemCaption = v.fElemCaption,
+            //        VResponsibilityLevel = v.fResponsibilityLevel,
+            //        VBeginExploitation = v.fBeginExploitation,
+            //        VExploitationTerm = v.fExploitationTerm
+            //    });
+            //}
         }
 
         /// <summary>
@@ -198,9 +170,6 @@ namespace SolomonDesktop.ViewModels
         }
 
         #endregion
-
-
-        }
 
     }
 }
